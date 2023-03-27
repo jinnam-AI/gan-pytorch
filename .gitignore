@@ -1,0 +1,10 @@
+#environment
+venv/
+
+#ide
+.vscode/
+__pycache__
+
+# temp
+data/
+result/
