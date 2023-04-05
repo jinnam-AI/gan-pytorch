@@ -55,6 +55,10 @@ def get_tools(cfg:Config):
     
     #model
     generator,discriminator = get_model(cfg.model,cfg.vector,cfg.gen_feature,cfg.dec_feature)
+    if cfg.restart:
+        generator.load_state_dict(torch.load(cfg.checkpoint_gen))
+        discriminator.load_state_dict(torch.load(cfg.checkpoint_dec))
+    
     generator.to(device)
     discriminator.to(device)
     

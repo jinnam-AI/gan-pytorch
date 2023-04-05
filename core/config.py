@@ -1,6 +1,6 @@
 import pathlib
 
-from typing import Dict,Any
+from typing import Dict,Any,Union
 
 PROJECT_DIR = pathlib.Path(__file__).resolve().parent.parent
 
@@ -13,6 +13,7 @@ class Config:
     
     workers:int = 2
     batch_size:int = 64
+    start_epoch:int = 1
     max_epoch:int = 5
     save_period:int = 100
     
@@ -25,6 +26,10 @@ class Config:
     
     learning_rate:float = 0.0002
     beta1:float = 0.5
+    
+    restart:bool = False
+    checkpoint_gen:Union[str,None] = None
+    checkpoint_dec:Union[str,None] = None
     
     show:bool = True
     
