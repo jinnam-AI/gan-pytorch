@@ -12,7 +12,7 @@ from torchvision.utils import make_grid,save_image
 from core.config import Config
 from loguru import logger
 
-class Trainer:
+class DcTrainer:
     def __init__(self,
                  cfg:Config,
                  generator:nn.Module,
@@ -35,6 +35,7 @@ class Trainer:
         self.fake_label = 0.
         self.show = cfg.show
         self.save_period = cfg.save_period
+        self.start_epoch = cfg.start_epoch
         self.max_epoch = cfg.max_epoch
         self.vector_size = cfg.vector
         self.batch_size = cfg.batch_size
@@ -111,7 +112,7 @@ class Trainer:
                 
     @logger.catch
     def train(self,data_loader:DataLoader):
-        for epoch in range(1,self.max_epoch):
+        for epoch in range(self.start_epoch,self.max_epoch):
             self._inner_train(data_loader,epoch)
             
             if epoch%self.save_period == 0:
