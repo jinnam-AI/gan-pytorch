@@ -1,5 +1,7 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
+
 from torch import Tensor
 
 def weights_init(m):
@@ -10,16 +12,25 @@ def weights_init(m):
         nn.init.normal_(m.weight.data, 1.0, 0.02)
         nn.init.constant_(m.bias.data, 0)
 
+def l2norm(tensor:Tensor):
+    """
+    l2 norm  : 지수가 2인 정규화
+
+    Args:
+        tensor (Tensor): 입력 tensor
+
+    Returns:
+        Tensor: 정규화된 tensor
+    """
+    return F.normalize(tensor, p = 2, dim = -1)
+
 class LSloss(nn.Module):
     def __init__(self) -> None:
         super().__init__()
         
-    def forward(self,input:Tensor,targer:Tensor):
-        return  0.5 * torch.mean((input-targer)**2)
+    def forward(self,input:Tensor,target:Tensor):
+        return  0.5 * torch.mean((input-target)**2)
+    
 
-class BeGanloss(nn.Module):
-    def __init__(self) -> None:
-        super().__init__()
-        
-    def forward(self,input:Tensor,targer:Tensor):
-        return  torch.mean(torch.abs(input-targer)**2)
+    
+    

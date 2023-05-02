@@ -27,8 +27,3 @@ def lsdiscriminator256(feature:int=64):
     discriminator = LSDiscriminator(256,feature)
     discriminator.apply(weights_init)
     return discriminator
-
-def lsdiscriminator512(feature:int=64):
-    discriminator = LSDiscriminator(512,feature)
-    discriminator.apply(weights_init)
-    return discriminator

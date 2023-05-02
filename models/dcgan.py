@@ -95,8 +95,6 @@ class Discriminator(nn.Module):
         x = self.layers(x)
         return x
     
-
-
 def generator64(vector_size:int=100,feature:int=64):
     generator = Generator(vector_size,64,feature)
     generator.apply(weights_init)
@@ -109,11 +107,6 @@ def generator128(vector_size:int=100,feature:int=64):
 
 def generator256(vector_size:int=100,feature:int=64):
     generator = Generator(vector_size,256,feature)
-    generator.apply(weights_init)
-    return generator
-
-def generator512(vector_size:int=100,feature:int=64):
-    generator = Generator(vector_size,512,feature)
     generator.apply(weights_init)
     return generator
 
